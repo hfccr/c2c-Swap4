@@ -491,9 +491,6 @@ interface IUExchangeFactory {
 
 // File: UExchangeFactory.sol
 
-
-
-
 contract UExchangeFactory is IUExchangeFactory {
     address public feeTo;
     address public feeToSetter;

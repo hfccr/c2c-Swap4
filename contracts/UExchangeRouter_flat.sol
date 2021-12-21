@@ -127,7 +127,7 @@ library UExchangeLibrary {
                 hex'ff',
                 factory,
                 keccak256(abi.encodePacked(token0, token1)),
-                hex'3ac79b4de4d113b17d787dcff108b9507d8011331dbc2da2e55d5545d6059ac6' // init code hash
+                hex'efc75205f0eaa25578fa4d58bdd95f95c6271bfe0a24d6e59f886441b6f5c4ed' // init code hash
             ))));
     }
 
