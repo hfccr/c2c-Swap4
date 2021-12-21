@@ -134,6 +134,30 @@
       "symbol": "UNO",
       "decimals": 18,
       "logoURI": "https://i.imgur.com/Y2oqSOp.png"
+    },
+    {
+      "chainId": 31,
+      "address": "0xCB46c0ddc60D18eFEB0E586C17Af6ea36452Dae0",
+      "name": "Dollar on Chain",
+      "symbol": "DOC",
+      "decimals": 18,
+      "logoURI": "https://i.imgur.com/Y2oqSOp.png"
+    },
+    {
+      "chainId": 31,
+      "address": "0xe355c280131dfaf18bf1c3648aee3c396db6b5fd",
+      "name": "Brazilian Digital Token",
+      "symbol": "BRZ",
+      "decimals": 4,
+      "logoURI": "https://i.imgur.com/Y2oqSOp.png"
+    },
+    {
+      "chainId": 31,
+      "address": "0x19F64674D8A5B4E652319F5e239eFd3bc969A1fE",
+      "name": "tRIF Token",
+      "symbol": "tRIF",
+      "decimals": 18,
+      "logoURI": "https://i.imgur.com/Y2oqSOp.png"
     }
   ],
   "version": {
