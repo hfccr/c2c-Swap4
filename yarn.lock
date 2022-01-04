@@ -2711,10 +2711,10 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
-"@udotcash/u-exchange-sdk@1.1.10":
-  version "1.1.10"
-  resolved "https://registry.yarnpkg.com/@udotcash/u-exchange-sdk/-/u-exchange-sdk-1.1.10.tgz#8a13b0aeb6be51cdaaa479fc0c504644bc70bfc4"
-  integrity sha512-iYtu4Zun6qP8VAeUNg/efL/YKQ9gHi8hECn+0UmxGyEpnjilJmr2O3onNPJshOhvBYUA9TiNYegry3BS/awZqw==
+"@udotcash/u-exchange-sdk@1.1.11":
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/@udotcash/u-exchange-sdk/-/u-exchange-sdk-1.1.11.tgz#e41e2d9504dcfe675e6077445e49e93d5de4b0a4"
+  integrity sha512-BOBADEbAYXJ/pu+gF9ZD5nJDGDB2lHUnF8VctGeJdOnffvrREvqzgW6k+o6CXnxJAk1mYh1upfgrcT/TdArQWQ==
   dependencies:
     "@uniswap/v2-core" "^1.0.0"
     big.js "^5.2.2"
