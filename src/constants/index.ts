@@ -2,6 +2,7 @@ import EthereumLogo from '../assets/images/ethereum-logo.png'
 import BinanceLogo from '../assets/svg/binance-logo.svg'
 import MaticLogo from '../assets/images/matic-logo.png'
 import RSKLogo from '../assets/images/rsk-logo.png'
+import XDAILogo from '../assets/images/xdai-stake-logo.svg'
 
 import { ChainId, JSBI, Percent, Token, WETH } from '@udotcash/u-exchange-sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
@@ -357,7 +358,8 @@ export const CHAIN_INFO: ChainInfo = {
     label: 'xDai',
     explorer: 'https://blockscout.com/xdai/mainnet/',
     nativeCurrency: { name: 'xDai', symbol: 'xDAI', decimals: 18 },
-    rpcUrls: ['https://rpc.xdaichain.com/']
+    rpcUrls: ['https://rpc.xdaichain.com/'],
+    logoUrl: XDAILogo
   },
   [ChainId.POLYGON]: {
     label: 'Polygon Mainnet',
