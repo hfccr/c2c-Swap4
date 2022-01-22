@@ -57,6 +57,7 @@ export function useEagerConnect() {
           console.log('Failed to set chain')
         }
       }
+      handleChainChanged()
       ethereum.on('chainChanged', handleChainChanged)
       return () => {
         if (ethereum && ethereum.removeListener) {
