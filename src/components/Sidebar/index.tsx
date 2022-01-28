@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 
 import styled from 'styled-components'
 
-import { MessageSquare, Shuffle, Layers } from 'react-feather'
+import { Globe , Shuffle, Layers } from 'react-feather'
 
 import Row, { RowFixed } from '../Row'
 import { ExternalLink } from '../../theme'
@@ -194,7 +194,7 @@ export default function Sidebar() {
             id={`nav-website`}
             href={'https://connect2dinc.com/'}
           >
-            <MessageSquare size={20} />
+            <Globe size={20} />
             <Spacer />
             CONNECT2D<span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
