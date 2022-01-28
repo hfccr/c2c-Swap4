@@ -87,7 +87,7 @@ export default function ConfirmSwapModal({
         <TransactionErrorContent onDismiss={onDismiss} message={swapErrorMessage} />
       ) : (
         <ConfirmationModalContent
-          title="Confirm Exchange"
+          title="Confirm Swap"
           onDismiss={onDismiss}
           topContent={modalHeader}
           bottomContent={modalBottom}
