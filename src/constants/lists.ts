@@ -17,13 +17,13 @@ export const UNSUPPORTED_LIST_URLS: string[] = []
 // const CMC_STABLECOIN = 'stablecoin.cmc.eth'
 // const KLEROS_LIST = 't2crtokens.eth'
 //const GEMINI_LIST = 'https://www.gemini.com/uniswap/manifest.json'
-const UCASH_LIST = 'https://raw.githubusercontent.com/UdotCASH/u-exchange/main/src/constants/tokenLists/tokenList.json'
+const C2C_LIST = 'https://raw.githubusercontent.com/UdotCASH/u-exchange/main/src/constants/tokenLists/tokenList.json'
 
 // lower index == higher priority for token import
 export const DEFAULT_LIST_OF_LISTS: string[] = [
-  UCASH_LIST,
+  C2C_LIST,
   ...UNSUPPORTED_LIST_URLS // need to load unsupported tokens as well
 ]
 
 // default lists to be 'active' aka searched across
-export const DEFAULT_ACTIVE_LIST_URLS: string[] = [UCASH_LIST]
+export const DEFAULT_ACTIVE_LIST_URLS: string[] = [C2C_LIST]

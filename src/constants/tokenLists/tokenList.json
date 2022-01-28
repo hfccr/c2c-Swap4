@@ -1,8 +1,8 @@
 {
-  "name": "UCASH",
+  "name": "C2C",
   "logoURI": "https://i.imgur.com/Y2oqSOp.png",
   "keywords": [
-    "ucash",
+    "c2c",
     "defi"
   ],
   "timestamp": "2020-10-19T12:32:17.000+00:00",
@@ -42,16 +42,16 @@
     {
       "chainId": 1,
       "address": "0x92e52a1a235d9a103d970901066ce910aacefd37",
-      "name": "Universal Cash",
-      "symbol": "UCASH",
+      "name": "CONNECT2D CRYPTO",
+      "symbol": "C2C",
       "decimals": 8,
       "logoURI": "https://i.imgur.com/Y2oqSOp.png"
     },
     {
       "chainId": 4,
       "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
-      "name": "Universal Cash",
-      "symbol": "rUCASH",
+      "name": "CONNECT2D CRYPTO",
+      "symbol": "rC2C",
       "decimals": 18,
       "logoURI": "https://i.imgur.com/Y2oqSOp.png"
     },
@@ -98,8 +98,8 @@
     {
       "chainId": 56,
       "address": "0xb2535bc0cb30273b7b109eda98b348d4f4634e05",
-      "name": "bUCASH",
-      "symbol": "bUCASH",
+      "name": "CONNECT2D CRYPTO",
+      "symbol": "bC2C",
       "decimals": 18,
       "logoURI": "https://i.imgur.com/Y2oqSOp.png"
     },

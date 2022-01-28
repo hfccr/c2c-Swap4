@@ -62,11 +62,11 @@ export default function Earn() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>UCASH liquidity mining</TYPE.white>
+                <TYPE.white fontWeight={600}>C2C liquidity mining</TYPE.white>
               </RowBetween>
               <RowBetween>
                 <TYPE.white fontSize={14}>
-                  Deposit your Liquidity Provider tokens to receive UCASH, the uEcosystem network access token.
+                  Deposit your Liquidity Provider tokens to receive C2C, the CONNECT2D CRYPTO network access token.
                 </TYPE.white>
               </RowBetween>{' '}
               <ExternalLink
@@ -74,7 +74,7 @@ export default function Earn() {
                 href="https://u.cash/"
                 target="_blank"
               >
-                <TYPE.white fontSize={14}>Read more about UCASH</TYPE.white>
+                <TYPE.white fontSize={14}>Read more about C2C</TYPE.white>
               </ExternalLink>
             </AutoColumn>
           </CardSection>
