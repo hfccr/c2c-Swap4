@@ -191,12 +191,12 @@ export default function Sidebar() {
             {t('Liquidity')}
           </StyledNavLink>
           <StyledExternalLink
-            id={`nav-discord`}
-            href={'https://discord.gg/Smm8zjEuyB'}
+            id={`nav-website`}
+            href={'https://connect2dinc.com/'}
           >
             <MessageSquare size={20} />
             <Spacer />
-            Discord <span style={{ fontSize: '11px' }}>↗</span>
+            CONNECT2D<span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
         </HeaderLinks>
       </HeaderRow>
