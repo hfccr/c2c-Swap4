@@ -388,15 +388,6 @@ export default function Header() {
             <Spacer />
             {t('Liquidity')}
           </StyledNavLink>
-          {/*<StyledNavLink id={`stake-nav-link`} to={'/uni'}>
-            UNI
-          </StyledNavLink>
-          <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
-            Vote
-          </StyledNavLink>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://info.u.exchange'}>
-            Info <span style={{ fontSize: '11px' }}>↗</span>
-          </StyledExternalLink>*/}
         </HeaderLinks>
       <HeaderControls>
         <HeaderElement>

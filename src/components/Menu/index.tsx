@@ -107,7 +107,7 @@ export default function Menu() {
             <MessageCircle size={14} />
             Discord
           </MenuItem>
-          <MenuItem id="link" href="https://info.u.exchange">
+          <MenuItem id="link" href="https://connect2dinc.com/">
             <PieChart size={14} />
             Analytics
           </MenuItem>

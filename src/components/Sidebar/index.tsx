@@ -198,23 +198,6 @@ export default function Sidebar() {
             <Spacer />
             Discord <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
-          {/* <StyledExternalLink
-            id={`nav-analytics`}
-            href={'https://info.u.exchange'}
-          >
-            <Activity size={20} />
-            <Spacer />
-            Analytics <span style={{ fontSize: '11px' }}>↗</span>
-          </StyledExternalLink> */}
-          {/*<StyledNavLink id={`stake-nav-link`} to={'/uni'}>
-            UNI
-          </StyledNavLink>
-          <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
-            Vote
-          </StyledNavLink>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://info.u.exchange'}>
-            Info <span style={{ fontSize: '11px' }}>↗</span>
-          </StyledExternalLink>*/}
         </HeaderLinks>
       </HeaderRow>
     </HeaderFrame>
