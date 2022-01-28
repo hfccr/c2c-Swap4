@@ -71,7 +71,7 @@ export default function Earn() {
               </RowBetween>{' '}
               <ExternalLink
                 style={{ color: 'white', textDecoration: 'underline' }}
-                href="https://u.cash/"
+                href="https://connect2dinc.com/"
                 target="_blank"
               >
                 <TYPE.white fontSize={14}>Read more about C2C</TYPE.white>
