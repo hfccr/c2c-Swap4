@@ -42,7 +42,7 @@ export default function MigrateV1() {
   const V1Exchanges = useAllTokenV1Exchanges()
   const V1LiquidityTokens: Token[] = useMemo(() => {
     return chainId
-      ? Object.keys(V1Exchanges).map(exchangeAddress => new Token(chainId, exchangeAddress, 18, 'U.EXCHANGE', 'U.EXCHANGE V1'))
+      ? Object.keys(V1Exchanges).map(exchangeAddress => new Token(chainId, exchangeAddress, 18, 'C2CSwap', 'C2CSwap V1'))
       : []
   }, [chainId, V1Exchanges])
   const [V1LiquidityBalances, V1LiquidityBalancesLoading] = useTokenBalancesWithLoadingIndicator(
@@ -73,12 +73,12 @@ export default function MigrateV1() {
           <BackArrow to="/pool" />
           <TYPE.mediumHeader>Migrate V1 Liquidity</TYPE.mediumHeader>
           <div>
-            <QuestionHelper text="Migrate your liquidity tokens from U.EXCHANGE V1 to U.EXCHANGE V2." />
+            <QuestionHelper text="Migrate your liquidity tokens from C2CSwap V1 to C2CSwap V2." />
           </div>
         </AutoRow>
 
         <TYPE.body style={{ marginBottom: 8, fontWeight: 400 }}>
-          For each pool shown below, click migrate to remove your liquidity from U.EXCHANGE V1 and deposit it into U.EXCHANGE
+          For each pool shown below, click migrate to remove your liquidity from C2CSwap V1 and deposit it into C2CSwap
           V2.
         </TYPE.body>
 
