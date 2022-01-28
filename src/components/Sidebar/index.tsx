@@ -173,7 +173,7 @@ export default function Sidebar() {
           >
             <Shuffle size={20} />
             <Spacer />
-            {t('Exchange')}
+            {t('Swap')}
           </StyledNavLink>
           <StyledNavLink
             id={`pool-nav-link`}
