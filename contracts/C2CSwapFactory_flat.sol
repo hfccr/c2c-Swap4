@@ -2,11 +2,11 @@
 // File: c2cswapfactory_flat.sol
 
 
-// File: interfaces/IC2CExchangeCallee.sol
+// File: interfaces/IC2CSwapCallee.sol
 
 pragma solidity >=0.5.16;
 
-interface IC2CExchangeCallee {
+interface IC2CSwapCallee {
     function c2cswapCall(address sender, uint amount0, uint amount1, bytes calldata data) external;
 }
 
@@ -94,10 +94,10 @@ library SafeMath {
     }
 }
 
-// File: interfaces/IC2CExchangeERC20.sol
+// File: interfaces/IC2CSwapERC20.sol
 
 
-interface IC2CExchangeERC20 {
+interface IC2CSwapERC20 {
     event Approval(address indexed owner, address indexed spender, uint value);
     event Transfer(address indexed from, address indexed to, uint value);
 
@@ -119,12 +119,12 @@ interface IC2CExchangeERC20 {
     function permit(address owner, address spender, uint value, uint deadline, uint8 v, bytes32 r, bytes32 s) external;
 }
 
-// File: C2CExchangeERC20.sol
+// File: C2CSwapERC20.sol
 
 
 
 
-contract C2CExchangeERC20 is IC2CExchangeERC20 {
+contract C2CSwapERC20 is IC2CSwapERC20 {
     using SafeMath for uint;
 
     string public constant name = 'C2CSwap LP Token';
@@ -214,10 +214,10 @@ contract C2CExchangeERC20 is IC2CExchangeERC20 {
     }
 }
 
-// File: interfaces/IC2CExchangePair.sol
+// File: interfaces/IC2CSwapPair.sol
 
 
-interface IC2CExchangePair {
+interface IC2CSwapPair {
     event Approval(address indexed owner, address indexed spender, uint value);
     event Transfer(address indexed from, address indexed to, uint value);
 
@@ -268,7 +268,7 @@ interface IC2CExchangePair {
     function initialize(address, address) external;
 }
 
-// File: C2CExchangePair.sol
+// File: C2CSwapPair.sol
 
 
 
@@ -278,7 +278,7 @@ interface IC2CExchangePair {
 
 
 
-contract C2CExchangePair is IC2CExchangePair, C2CExchangeERC20 {
+contract C2CSwapPair is IC2CSwapPair, C2CSwapERC20 {
     using SafeMath  for uint;
     using UQ112x112 for uint224;
 
@@ -299,7 +299,7 @@ contract C2CExchangePair is IC2CExchangePair, C2CExchangeERC20 {
 
     uint private unlocked = 1;
     modifier lock() {
-        require(unlocked == 1, 'C2CExchange: LOCKED');
+        require(unlocked == 1, 'C2CSwap: LOCKED');
         unlocked = 0;
         _;
         unlocked = 1;
@@ -313,7 +313,7 @@ contract C2CExchangePair is IC2CExchangePair, C2CExchangeERC20 {
 
     function _safeTransfer(address token, address to, uint value) private {
         (bool success, bytes memory data) = token.call(abi.encodeWithSelector(SELECTOR, to, value));
-        require(success && (data.length == 0 || abi.decode(data, (bool))), 'C2CExchange: TRANSFER_FAILED');
+        require(success && (data.length == 0 || abi.decode(data, (bool))), 'C2CSwap: TRANSFER_FAILED');
     }
 
     event Mint(address indexed sender, uint amount0, uint amount1);
@@ -334,14 +334,14 @@ contract C2CExchangePair is IC2CExchangePair, C2CExchangeERC20 {
 
     // called once by the factory at time of deployment
     function initialize(address _token0, address _token1) external {
-        require(msg.sender == factory, 'C2CExchange: FORBIDDEN'); // sufficient check
+        require(msg.sender == factory, 'C2CSwap: FORBIDDEN'); // sufficient check
         token0 = _token0;
         token1 = _token1;
     }
 
     // update reserves and, on the first call per block, price accumulators
     function _update(uint balance0, uint balance1, uint112 _reserve0, uint112 _reserve1) private {
-        require(balance0 <= uint112(-1) && balance1 <= uint112(-1), 'C2CExchange: OVERFLOW');
+        require(balance0 <= uint112(-1) && balance1 <= uint112(-1), 'C2CSwap: OVERFLOW');
         uint32 blockTimestamp = uint32(block.timestamp % 2**32);
         uint32 timeElapsed = blockTimestamp - blockTimestampLast; // overflow is desired
         if (timeElapsed > 0 && _reserve0 != 0 && _reserve1 != 0) {
@@ -357,7 +357,7 @@ contract C2CExchangePair is IC2CExchangePair, C2CExchangeERC20 {
 
     // if fee is on, mint liquidity equivalent to 1/6th of the growth in sqrt(k)
     function _mintFee(uint112 _reserve0, uint112 _reserve1) private returns (bool feeOn) {
-        address feeTo = IC2CExchangeFactory(factory).feeTo();
+        address feeTo = IC2CSwapFactory(factory).feeTo();
         feeOn = feeTo != address(0);
         uint _kLast = kLast; // gas savings
         if (feeOn) {
@@ -392,7 +392,7 @@ contract C2CExchangePair is IC2CExchangePair, C2CExchangeERC20 {
         } else {
             liquidity = Math.min(amount0.mul(_totalSupply) / _reserve0, amount1.mul(_totalSupply) / _reserve1);
         }
-        require(liquidity > 0, 'C2CExchange: INSUFFICIENT_LIQUIDITY_MINTED');
+        require(liquidity > 0, 'C2CSwap: INSUFFICIENT_LIQUIDITY_MINTED');
         _mint(to, liquidity);
 
         _update(balance0, balance1, _reserve0, _reserve1);
@@ -413,7 +413,7 @@ contract C2CExchangePair is IC2CExchangePair, C2CExchangeERC20 {
         uint _totalSupply = totalSupply; // gas savings, must be defined here since totalSupply can update in _mintFee
         amount0 = liquidity.mul(balance0) / _totalSupply; // using balances ensures pro-rata distribution
         amount1 = liquidity.mul(balance1) / _totalSupply; // using balances ensures pro-rata distribution
-        require(amount0 > 0 && amount1 > 0, 'C2CExchange: INSUFFICIENT_LIQUIDITY_BURNED');
+        require(amount0 > 0 && amount1 > 0, 'C2CSwap: INSUFFICIENT_LIQUIDITY_BURNED');
         _burn(address(this), liquidity);
         _safeTransfer(_token0, to, amount0);
         _safeTransfer(_token1, to, amount1);
@@ -427,29 +427,29 @@ contract C2CExchangePair is IC2CExchangePair, C2CExchangeERC20 {
 
     // this low-level function should be called from a contract which performs important safety checks
     function swap(uint amount0Out, uint amount1Out, address to, bytes calldata data) external lock {
-        require(amount0Out > 0 || amount1Out > 0, 'C2CExchange: INSUFFICIENT_OUTPUT_AMOUNT');
+        require(amount0Out > 0 || amount1Out > 0, 'C2CSwap: INSUFFICIENT_OUTPUT_AMOUNT');
         (uint112 _reserve0, uint112 _reserve1,) = getReserves(); // gas savings
-        require(amount0Out < _reserve0 && amount1Out < _reserve1, 'C2CExchange: INSUFFICIENT_LIQUIDITY');
+        require(amount0Out < _reserve0 && amount1Out < _reserve1, 'C2CSwap: INSUFFICIENT_LIQUIDITY');
 
         uint balance0;
         uint balance1;
         { // scope for _token{0,1}, avoids stack too deep errors
         address _token0 = token0;
         address _token1 = token1;
-        require(to != _token0 && to != _token1, 'C2CExchange: INVALID_TO');
+        require(to != _token0 && to != _token1, 'C2CSwap: INVALID_TO');
         if (amount0Out > 0) _safeTransfer(_token0, to, amount0Out); // optimistically transfer tokens
         if (amount1Out > 0) _safeTransfer(_token1, to, amount1Out); // optimistically transfer tokens
-        if (data.length > 0) IC2CExchangeCallee(to).c2cswapCall(msg.sender, amount0Out, amount1Out, data);
+        if (data.length > 0) IC2CSwapCallee(to).c2cswapCall(msg.sender, amount0Out, amount1Out, data);
         balance0 = IERC20(_token0).balanceOf(address(this));
         balance1 = IERC20(_token1).balanceOf(address(this));
         }
         uint amount0In = balance0 > _reserve0 - amount0Out ? balance0 - (_reserve0 - amount0Out) : 0;
         uint amount1In = balance1 > _reserve1 - amount1Out ? balance1 - (_reserve1 - amount1Out) : 0;
-        require(amount0In > 0 || amount1In > 0, 'C2CExchange: INSUFFICIENT_INPUT_AMOUNT');
+        require(amount0In > 0 || amount1In > 0, 'C2CSwap: INSUFFICIENT_INPUT_AMOUNT');
         { // scope for reserve{0,1}Adjusted, avoids stack too deep errors
         uint balance0Adjusted = balance0.mul(1000).sub(amount0In.mul(3));
         uint balance1Adjusted = balance1.mul(1000).sub(amount1In.mul(3));
-        require(balance0Adjusted.mul(balance1Adjusted) >= uint(_reserve0).mul(_reserve1).mul(1000**2), 'C2CExchange: K');
+        require(balance0Adjusted.mul(balance1Adjusted) >= uint(_reserve0).mul(_reserve1).mul(1000**2), 'C2CSwap: K');
         }
 
         _update(balance0, balance1, _reserve0, _reserve1);
@@ -470,10 +470,10 @@ contract C2CExchangePair is IC2CExchangePair, C2CExchangeERC20 {
     }
 }
 
-// File: interfaces/IC2CExchangeFactory.sol
+// File: interfaces/IC2CSwapFactory.sol
 
 
-interface IC2CExchangeFactory {
+interface IC2CSwapFactory {
     event PairCreated(address indexed token0, address indexed token1, address pair, uint);
 
     function feeTo() external view returns (address);
@@ -489,9 +489,9 @@ interface IC2CExchangeFactory {
     function setFeeToSetter(address) external;
 }
 
-// File: C2CExchangeFactory.sol
+// File: C2CSwapFactory.sol
 
-contract C2CExchangeFactory is IC2CExchangeFactory {
+contract C2CSwapFactory is IC2CSwapFactory {
     address public feeTo;
     address public feeToSetter;
 
@@ -509,16 +509,16 @@ contract C2CExchangeFactory is IC2CExchangeFactory {
     }
 
     function createPair(address tokenA, address tokenB) external returns (address pair) {
-        require(tokenA != tokenB, 'C2CExchange: IDENTICAL_ADDRESSES');
+        require(tokenA != tokenB, 'C2CSwap: IDENTICAL_ADDRESSES');
         (address token0, address token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
-        require(token0 != address(0), 'C2CExchange: ZERO_ADDRESS');
-        require(getPair[token0][token1] == address(0), 'C2CExchange: PAIR_EXISTS'); // single check is sufficient
-        bytes memory bytecode = type(C2CExchangePair).creationCode;
+        require(token0 != address(0), 'C2CSwap: ZERO_ADDRESS');
+        require(getPair[token0][token1] == address(0), 'C2CSwap: PAIR_EXISTS'); // single check is sufficient
+        bytes memory bytecode = type(C2CSwapPair).creationCode;
         bytes32 salt = keccak256(abi.encodePacked(token0, token1));
         assembly {
             pair := create2(0, add(bytecode, 32), mload(bytecode), salt)
         }
-        IC2CExchangePair(pair).initialize(token0, token1);
+        IC2CSwapPair(pair).initialize(token0, token1);
         getPair[token0][token1] = pair;
         getPair[token1][token0] = pair; // populate mapping in the reverse direction
         allPairs.push(pair);
@@ -526,12 +526,12 @@ contract C2CExchangeFactory is IC2CExchangeFactory {
     }
 
     function setFeeTo(address _feeTo) external {
-        require(msg.sender == feeToSetter, 'C2CExchange: FORBIDDEN');
+        require(msg.sender == feeToSetter, 'C2CSwap: FORBIDDEN');
         feeTo = _feeTo;
     }
 
     function setFeeToSetter(address _feeToSetter) external {
-        require(msg.sender == feeToSetter, 'C2CExchange: FORBIDDEN');
+        require(msg.sender == feeToSetter, 'C2CSwap: FORBIDDEN');
         feeToSetter = _feeToSetter;
     }
 }
